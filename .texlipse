@@ -1,5 +1,5 @@
 #TeXlipse project settings
-#Mon Aug 20 16:03:32 CEST 2018
+#Mon Aug 20 18:58:55 CEST 2018
 markTmpDer=true
 builderNum=2
 outputDir=
@@ -7,8 +7,8 @@ makeIndSty=
 bibrefDir=
 outputFormat=pdf
 tempDir=
-mainTexFile=tikz-quantumgates.tex
-outputFile=tikz-quantumgates.pdf
+mainTexFile=example_frontpage2.tex
+outputFile=example_frontpage2.pdf
 langSpell=en
 markDer=true
 srcDir=

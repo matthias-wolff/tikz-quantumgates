@@ -511,13 +511,13 @@
   \pgfmathsetmacro\x{\sx*(#3)}
   \pgfmathsetmacro\y{(#4)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
-    \tikzset{cstyle/.style={,ibmqxI,ultra thick,line cap=butt}}
+    \tikzset{cstyle/.style={ibmqxI,ultra thick,line cap=butt}}
   }{%
     \tikzset{cstyle/.style={}}
   }%
   \draw[cstyle](\x-\sx/2,\y-0.3) -- (\x+\sx/2,\y-0.3);
   \draw[cstyle](\x-\sx/2+0.05,\y-0.45) -- (\x-\sx/2+0.15,\y-0.1)
-    node[anchor=east,black] {\footnotesize #2\!};
+    node[anchor=east,black] {\footnotesize #2};
 }
 
 %% == OTHER GATE OPERATORS ====================================================
