@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikz-quantumgates}
+\begin{document}
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=east] at (0.6,-0.3) {\footnotesize 0};
+    \qzero[ibmqx]{0}{2}\qzero[ibmqx]{0}{1}
+    \qgateH[ibmqx]{1}{2}\qgateX[ibmqx]{1}{1}\qmeasBh[ibmqx]{2}{1}{0}
+    \qgateCNC[ibmqx]{b}{2}{2}\qgateCNX[ibmqx]{t}{2}{1}\qmeasB[ibmqx]{2}{0}
+    \qmeasM[ibmqx]{3}{2}\qmeasR[ibmqx]{3}{1}\qmeasMB[ibmqx]{0}{3}{0}
+    \qwire[ibmqx]{4}{2}\qmeasM[ibmqx]{4}{1}\qmeasMB[ibmqx]{1}{4}{0}
+  \end{tikzpicture}
+\end{document}

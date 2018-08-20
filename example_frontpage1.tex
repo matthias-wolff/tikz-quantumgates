@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz-quantumgates}
+\begin{document}
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=east] at (-0.6,2) {$|0\rangle$};
+    \node[anchor=east] at (-0.6,1) {$x_1$};
+    \node[anchor=east] at (-0.6,0) {$x_2$};
+    \qwire{0}{2}\qgateX{0}{1}\qgateX{0}{0}
+    \qgateCNX{b}{1}{2}\qgateCNC{bt}{1}{1}\qgateCNC{t}{1}{0}
+    \qgateX{2}{2}\qgateX{2}{1}\qgateX{2}{0}
+    \node[anchor=west] at (3.2,2) {$y=x_1\vee x_2$};
+    \node[anchor=west] at (3.2,1) {$x_1$};
+    \node[anchor=west] at (3.2,0) {$x_2$};
+  \end{tikzpicture}
+\end{document}

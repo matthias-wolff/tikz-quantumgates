@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Mon Aug 20 16:03:32 CEST 2018
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=
+mainTexFile=tikz-quantumgates.tex
+outputFile=tikz-quantumgates.pdf
+langSpell=en
+markDer=true
+srcDir=
