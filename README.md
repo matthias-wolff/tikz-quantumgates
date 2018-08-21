@@ -10,8 +10,8 @@ __Examples__
     <td style="vertical-align:middle"><img alt="Example 2" src="https://rawgit.com/matthias-wolff/tikz-quantumgates/master/images/example_frontpage2.png"></td>
   </tr>
   <tr>
-    <td style="text-align:center; border:none">Example 1: Boolean OR circuit, standard layout</td>
-    <td style="text-align:center; border:none">Example 2: Bell state, IBM Q Experience layout [2]</td>
+    <td style="text-align:center; border:none"><a href="https://github.com/matthias-wolff/tikz-quantumgates/blob/master/example_frontpage1.tex">Example 1</a>: Boolean OR circuit, standard layout</td>
+    <td style="text-align:center; border:none"><a href="https://github.com/matthias-wolff/tikz-quantumgates/blob/master/example_frontpage2.tex">Example 2</a>: Bell state, IBM Q Experience layout [2]</td>
   </tr>
 </table>
 
