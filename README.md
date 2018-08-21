@@ -11,7 +11,7 @@ __Examples__
   </tr>
   <tr>
     <td style="text-align:center; border:none">Example 1: Boolean OR circuit, standard layout</td>
-    <td style="text-align:center; border:none">Example 2: Bell state IBM Q Experience layout [2]</td>
+    <td style="text-align:center; border:none">Example 2: Bell state, IBM Q Experience layout [2]</td>
   </tr>
 </table>
 
