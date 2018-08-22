@@ -181,6 +181,8 @@
 % - Other
 \setcounter{secnumdepth}{2}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 %
 \author{Matthias Wolff$^{\text{\sf\,[0000--0002--3895--7313]}}$}
@@ -188,7 +190,12 @@
 \title{The \Npckg Package:\\
 Drawing quantum circuits with \Ntikz}
 \maketitle
+
+\bigskip\noindent
+See \TT{https://github.com/matthias-wolff/tikz-quantumgates/blob/master/tikz-quantumgates.pdf}
+for the latest version of this document.
 \begin{center}
+  \bigskip\bigskip
   \begin{minipage}{0.9\linewidth}
     \textbf{Abstract}
 
@@ -213,6 +220,8 @@ Drawing quantum circuits with \Ntikz}
 
 \tableofcontents
 \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Overview}
 \subsection{List of Circuit Symbols}
@@ -295,6 +304,21 @@ Drawing quantum circuits with \Ntikz}
   \centering\tikz{\qgateCNC[ibmqx]{t}{0}{0}} & 
   \texttt{\textbackslash qgateCNC[option]\{cwires\}\{x\}\{y\}}
 \\ 
+  \centering\tikz{\qgateSWt{0}{0}} &
+  \centering$\begin{pmatrix}\tikz{\qgateSWt[ibmqx]{0}{0}}\end{pmatrix}$ & 
+  \texttt{\textbackslash qgateSWt[option]\{x\}\{y\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
+\\ 
+  \centering\tikz{\qgateSWR{0}{0}} &
+  \centering$\begin{pmatrix}\tikz{\qgateSWR[ibmqx]{0}{0}}\end{pmatrix}$ & 
+  \texttt{\textbackslash qgateSWR[option]\{x\}\{y\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
+\\ 
+  \centering\tikz{\qgateSWb{0}{0}} &
+  \centering$\begin{pmatrix}\tikz{\qgateSWb[ibmqx]{0}{0}}\end{pmatrix}$ & 
+  \texttt{\textbackslash qgateSWb[option]\{x\}\{y\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
+\\ 
   \centering\tikz{\qmeasM{0}{0}} &
   \centering\tikz{\qmeasM[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qmeasM[option]\{x\}\{y\}}
@@ -316,22 +340,27 @@ Drawing quantum circuits with \Ntikz}
   \texttt{\textbackslash qmeasBh[option]\{b\}\{x\}\{y\}}
 \\ 
   \centering\tikz{\qgateU{0}{0}{U}} &
-  \centering\tikz{\qgateU[ibmqxG]{0}{0}{U}} & 
+  \centering$\begin{pmatrix}\tikz{\qgateU[ibmqx]{0}{0}{U}}\end{pmatrix}$ & 
   \texttt{\textbackslash qgateU[option]\{x\}\{y\}\{label\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
 \\ 
   \centering\tikz{\qgateUu{0}{0}{U}} &
-  \centering\tikz{\qgateUu[ibmqxG]{0}{0}{U}} & 
+  \centering$\begin{pmatrix}\tikz{\qgateUu[ibmqx]{0}{0}{U}}\end{pmatrix}$ & 
   \texttt{\textbackslash qgateUu[option]\{x\}\{y\}\{label\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
 \\ 
   \centering\tikz{\qgateUuu{0}{0}{U}} &
-  \centering\tikz{\qgateUuu[ibmqxG]{0}{0}{U}} & 
+  \centering$\begin{pmatrix}\tikz{\qgateUuu[ibmqx]{0}{0}{U}}\end{pmatrix}$ & 
   \texttt{\textbackslash qgateUuu[option]\{x\}\{y\}\{label\}}
+  {\footnotesize (not an ``official'' IBM QX symbol)}
 \end{longtable}
 
 \subsection{Installation}
 Download \texttt{\Npckg.sty} from \cite{Wol18} file into your project folder
 and include the package with \texttt{\textbackslash
 usepackage\{\Npckg\!\!\!\}}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Documentation of Commands}
 \subsection{Wire and State Preparation Symbols}
@@ -342,24 +371,24 @@ usepackage\{\Npckg\!\!\!\}}.
 }
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qwire{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qwire[ibmqx]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
@@ -370,28 +399,29 @@ usepackage\{\Npckg\!\!\!\}}.
 }
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qzero{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qzero[ibmqx]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Single-Qubit Gate Symbols}
 
@@ -405,7 +435,7 @@ usepackage\{\Npckg\!\!\!\}}.
   Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
   for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
   defines the color of the gate symbol:
-  
+
   \vspace*{6pt}
   \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
   \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
@@ -415,9 +445,12 @@ usepackage\{\Npckg\!\!\!\}}.
   \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
   \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
   \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxG} will be used.
 }
 \docPar{x, y}{%
-  Coordinates of anchor point
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 \docPar{label}{%
   Gate label.
@@ -432,7 +465,7 @@ usepackage\{\Npckg\!\!\!\}}.
 \end{LTXexample}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qgateU[ibmqxA]{0}{0}{U1}
 \end{tikzpicture}
 \end{LTXexample}
@@ -444,24 +477,24 @@ usepackage\{\Npckg\!\!\!\}}.
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qgateID{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
-  \qScalePaper  
+  \qScalePaper
   \qgateID[ibmqx]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
@@ -478,12 +511,12 @@ usepackage\{\Npckg\!\!\!\}}.
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -512,12 +545,12 @@ usepackage\{\Npckg\!\!\!\}}.
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -546,12 +579,12 @@ usepackage\{\Npckg\!\!\!\}}.
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -580,12 +613,12 @@ usepackage\{\Npckg\!\!\!\}}.
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -614,12 +647,12 @@ $\displaystyle H\doteq\qgateOH $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -648,12 +681,12 @@ $\displaystyle S=\sqrt{Z}\doteq\qgateOS $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -682,12 +715,12 @@ $\displaystyle S^\dagger\doteq\qgateOSi $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -716,12 +749,12 @@ $\displaystyle T=\sqrt{S}\doteq\qgateOT $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -743,6 +776,8 @@ $\displaystyle T=\sqrt{S}\doteq\qgateOT $
 $\displaystyle T^\dagger\doteq\qgateOTi $
 \end{LTXexample}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Single-Qubit Physical Gate of IBM Q Experience}
 
 %% == \qgateUa ================================================================
@@ -752,12 +787,12 @@ $\displaystyle T^\dagger\doteq\qgateOTi $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -786,12 +821,12 @@ $\displaystyle U1_{\lambda}\doteq\qgateOUa $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -820,12 +855,12 @@ $\displaystyle U2_{\lambda,\phi}\doteq\qgateOUb $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -847,6 +882,8 @@ $\displaystyle U2_{\lambda,\phi}\doteq\qgateOUb $
 $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \end{LTXexample}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Multiple-Qubit Gate Symbols}
 
 %% == \qgateUu ================================================================
@@ -859,7 +896,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
   Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
   for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
   defines the color of the gate symbol:
-  
+
   \vspace*{6pt}
   \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
   \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
@@ -869,10 +906,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
   \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
   \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
   \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxG} will be used.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 \docPar{label}{%
   Gate label.
@@ -902,7 +941,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
   Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
   for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
   defines the color of the gate symbol:
-  
+
   \vspace*{6pt}
   \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
   \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
@@ -912,10 +951,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
   \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
   \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
   \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxG} will be used.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 \docPar{label}{%
   Gate label.
@@ -931,7 +972,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
   \qScalePaper
-  \qgateUuu[ibmqxB]{0}{0}{AND}
+  \qgateUuu[ibmqxA]{0}{0}{AND}
 \end{tikzpicture}
 \end{LTXexample}
 
@@ -942,7 +983,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{cwires}{%
@@ -951,7 +992,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -975,7 +1016,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{cwires}{%
@@ -984,7 +1025,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1008,12 +1049,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1030,6 +1071,95 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \end{tikzpicture}
 \end{LTXexample}
 
+%% == \qgateSWt ===============================================================
+\docCmd{qgateSWt[option]\{x\}\{y\}}{%
+  Top qubit of a SWAP gate.
+}
+
+\subsubsection*{Parameters}
+\docPar{option}{%
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
+  circuit styling.
+}
+\docPar{x, y}{%
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+
+\subsubsection*{Examples}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWt{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWt[ibmqx]{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+
+%% == \qgateSWR ===============================================================
+\docCmd{qgateSWR[option]\{x\}\{y\}}{%
+  Run-through qubit of a SWAP gate.
+}
+
+\subsubsection*{Parameters}
+\docPar{option}{%
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
+  circuit styling.
+}
+\docPar{x, y}{%
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+
+\subsubsection*{Examples}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWR{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWR[ibmqx]{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+
+%% == \qgateSWb ===============================================================
+\docCmd{qgateSWb[option]\{x\}\{y\}}{%
+  Bottom qubit of a SWAP gate.
+}
+
+\subsubsection*{Parameters}
+\docPar{option}{%
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
+  circuit styling.
+}
+\docPar{x, y}{%
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+
+\subsubsection*{Examples}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWb{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateSWb[ibmqx]{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Measurement Symbols}
 
 %% == \qmeasM =================================================================
@@ -1039,12 +1169,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1068,12 +1198,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1097,7 +1227,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{b}{%
@@ -1105,7 +1235,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1129,12 +1259,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1158,12 +1288,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience 
+  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
   circuit styling.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
-  $(\sx\,\texttt{x},\texttt{y})$.
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
 }
 
 \subsubsection*{Examples}
@@ -1180,6 +1310,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \end{tikzpicture}
 \end{LTXexample}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Further Gate Operators}
 
@@ -1193,11 +1324,12 @@ $\displaystyle CNOT\doteq\qgateOCNOT $
 $\displaystyle CCNOT\doteq\qgateOCCNOT $
 \end{LTXexample}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{The Package Source Code}
 \lstinputlisting[style=lstsLatex,linewidth=483pt]{tikz-quantumgates.sty}
 
-\pagebreak
+%\pagebreak
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{plain}
 \bibliography{tikz-quantumgates}
