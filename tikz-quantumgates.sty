@@ -253,17 +253,27 @@
 }}
 
 % U1 gate of IBM Q Experience
-\newcommand\qgateUa[3][]{%                                                     
+\makeatletter
+\newcommand\qgateUa{\@ifstar\qgateUaS\qgateUaN}
+\makeatother
+\newcommand\qgateUaN[3][]{% unstarred version
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \qgateU[ibmqxA]{#2}{#3}{U1}
   }{%
     \qgateU{#2}{#3}{U1}
   }%
 }
+\newcommand\qgateUaS[4][]{% starred version
+  \ifthenelse{\isin{ibmqx}{#1}}{%
+    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U1\\[-0.6em]\tiny #4\end{tabular}}
+  }{%
+    \qgateU{#2}{#3}{\begin{tabular}{c}U1\\[-0.6em]\tiny #4\end{tabular}}
+  }%
+}
 \newcommand\qgateOUa{{%
   \def\ket##1{\scriptstyle|##1\rangle}
   \def\bra##1{\scriptstyle\langle ##1|}
-  \def\j{\mathrm{e}}
+  \def\e{\mathrm{e}}
   \def\j{\mathrm{i}}
   \left(\hspace*{-0.4ex}\begin{array}{c|cc}
             & \bra{0} &        \bra{1} \\\hline
@@ -273,17 +283,27 @@
 }}
 
 % U2 gate of IBM Q Experience
-\newcommand\qgateUb[3][]{%                                                     
+\makeatletter
+\newcommand\qgateUb{\@ifstar\qgateUbS\qgateUbN}
+\makeatother
+\newcommand\qgateUbN[3][]{% unstarred version
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \qgateU[ibmqxA]{#2}{#3}{U2}
   }{%
     \qgateU{#2}{#3}{U2}
   }%
 }
+\newcommand\qgateUbS[4][]{% starred version
+  \ifthenelse{\isin{ibmqx}{#1}}{%
+    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U2\\[-0.6em]\tiny #4\end{tabular}}
+  }{%
+    \qgateU{#2}{#3}{\begin{tabular}{c}U2\\[-0.6em]\tiny #4\end{tabular}}
+  }%
+}
 \newcommand\qgateOUb{{%
   \def\ket##1{\scriptstyle|##1\rangle}
   \def\bra##1{\scriptstyle\langle ##1|}
-  \def\j{\mathrm{e}}
+  \def\e{\mathrm{e}}
   \def\j{\mathrm{i}}
   \renewcommand\arraystretch{1.4}
   \dfrac{1}{\sqrt{2}}\!
@@ -295,17 +315,27 @@
 }}
 
 % U3 gate of IBM Q Experience
-\newcommand\qgateUc[3][]{%                                                     
-  \ifthenelse{\isin{ibmqx}{#1}}{%
+\makeatletter
+\newcommand\qgateUc{\@ifstar\qgateUcS\qgateUcN}
+\makeatother
+\newcommand\qgateUcN[3][]{% 
+  \ifthenelse{\isin{ibmqx}{#1}}{% unstarred version
     \qgateU[ibmqxA]{#2}{#3}{U3}
   }{%
     \qgateU{#2}{#3}{U3}
   }%
 }
+\newcommand\qgateUcS[4][]{% starred version 
+  \ifthenelse{\isin{ibmqx}{#1}}{% unstarred version
+    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U3\\[-0.6em]\tiny #4\end{tabular}}
+  }{%
+    \qgateU{#2}{#3}{\begin{tabular}{c}U3\\[-0.6em]\tiny #4\end{tabular}}
+  }%
+}
 \newcommand\qgateOUc{{%
   \def\ket##1{\scriptstyle|##1\rangle}
   \def\bra##1{\scriptstyle\langle ##1|}
-  \def\j{\mathrm{e}}
+  \def\e{\mathrm{e}}
   \def\j{\mathrm{i}}
   \renewcommand\arraystretch{1.4}
   \left(\hspace*{-0.4ex}\begin{array}{c|cc}
@@ -605,6 +635,13 @@
 }}
 
 %% == AUXILIARY COMMANDS ======================================================
+
+% TikZ node in circuit coordinate system
+\newcommand\qnode[4][]{%
+  \pgfmathsetmacro\x{\qgateSx*(#2)}
+  \pgfmathsetmacro\y{(#3)}
+  \node[#1] at (\x,\y) {#4};
+}
 
 \newcommand{\qScalePaper}{%
   \draw[help lines,xstep=(\qgateSx/8),ystep=0.25,opacity=0.2] (-1.5,-1.5) grid (1.5,1.5);
