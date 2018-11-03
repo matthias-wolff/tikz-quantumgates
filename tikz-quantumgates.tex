@@ -781,7 +781,7 @@ $\displaystyle T^\dagger\doteq\qgateOTi $
 \subsection{Single-Qubit Physical Gate of IBM Q Experience}
 
 %% == \qgateUa ================================================================
-\docCmd{qgateUa[option]\{x\}\{y\}}{%
+\docCmd{qgateUa[option]\{x\}\{y\}\\\textbackslash qgateUa*[option]\{x\}\{y\}\{sublabel\}}{%
   U1 gate of IBM Q Experience.
 }
 
@@ -793,6 +793,9 @@ $\displaystyle T^\dagger\doteq\qgateOTi $
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
   $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+\docPar{sublabel}{%
+  Sub-label, e.\,g. for gate parameters (starred version only) 
 }
 
 \subsubsection*{Examples}
@@ -808,6 +811,18 @@ $\displaystyle T^\dagger\doteq\qgateOTi $
   \qgateUa[ibmqx]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUa*{0}{0}{$\lambda$}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUa*[ibmqx]{0}{0}{$\lambda$}
+\end{tikzpicture}
+\end{LTXexample}
 
 \subsubsection*{Gate Operator}
 \begin{LTXexample}[style=lstsDocExamples]
@@ -815,7 +830,7 @@ $\displaystyle U1_{\lambda}\doteq\qgateOUa $
 \end{LTXexample}
 
 %% == \qgateUb ================================================================
-\docCmd{qgateUb[option]\{x\}\{y\}}{%
+\docCmd{qgateUb[option]\{x\}\{y\}\\\textbackslash qgateUb*[option]\{x\}\{y\}\{sublabel\}}{%
   U2 gate of IBM Q Experience.
 }
 
@@ -827,6 +842,9 @@ $\displaystyle U1_{\lambda}\doteq\qgateOUa $
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
   $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+\docPar{sublabel}{%
+  Sub-label, e.\,g. for gate parameters (starred version only) 
 }
 
 \subsubsection*{Examples}
@@ -842,6 +860,18 @@ $\displaystyle U1_{\lambda}\doteq\qgateOUa $
   \qgateUb[ibmqx]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUb*{0}{0}{$\lambda,\phi$}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUb*[ibmqx]{0}{0}{$\lambda,\phi$}
+\end{tikzpicture}
+\end{LTXexample}
 
 \subsubsection*{Gate Operator}
 \begin{LTXexample}[style=lstsDocExamples]
@@ -849,7 +879,7 @@ $\displaystyle U2_{\lambda,\phi}\doteq\qgateOUb $
 \end{LTXexample}
 
 %% == \qgateUc ================================================================
-\docCmd{qgateUc[option]\{x\}\{y\}}{%
+\docCmd{qgateUc[option]\{x\}\{y\}\\\textbackslash qgateUc*[option]\{x\}\{y\}\{sublabel\}}{%
   U3 gate of IBM Q Experience.
 }
 
@@ -861,6 +891,9 @@ $\displaystyle U2_{\lambda,\phi}\doteq\qgateOUb $
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
   $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+\docPar{sublabel}{%
+  Sub-label, e.\,g. for gate parameters (starred version only) 
 }
 
 \subsubsection*{Examples}
@@ -874,6 +907,18 @@ $\displaystyle U2_{\lambda,\phi}\doteq\qgateOUb $
 \begin{tikzpicture}
   \qScalePaper
   \qgateUc[ibmqx]{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUc*{0}{0}{$\theta,\lambda,\phi$}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateUc*[ibmqx]{0}{0}{$\theta,\lambda,\phi$}
 \end{tikzpicture}
 \end{LTXexample}
 
@@ -1323,6 +1368,36 @@ $\displaystyle CNOT\doteq\qgateOCNOT $
 \begin{LTXexample}[style=lstsDocExamples]
 $\displaystyle CCNOT\doteq\qgateOCCNOT $
 \end{LTXexample}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Auxiliary Commands}
+
+%% == \qnode ================================================================
+\docCmd{qnode[style]\{x\}\{y\}\{label\}}{%
+  TikZ node in schematics coordinates.
+}
+
+\subsubsection*{Parameters}
+\docPar{style}{%
+  TikZ node style.
+}
+\docPar{x, y}{%
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+\docPar{label}{%
+  Node label.
+}
+
+\subsubsection*{Examples}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qnode[anchor=east]{0}{0}{text}
+\end{tikzpicture}
+\end{LTXexample}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
