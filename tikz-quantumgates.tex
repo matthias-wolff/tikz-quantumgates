@@ -275,7 +275,7 @@ for the latest version of this document.
   \centering\tikz{\qgateT{0}{0}} &
   \centering\tikz{\qgateT[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qgateT[option]\{x\}\{y\}}
-\\ 
+\\
   \centering\tikz{\qgateTi{0}{0}} &
   \centering\tikz{\qgateTi[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qgateTi[option]\{x\}\{y\}}
@@ -291,6 +291,18 @@ for the latest version of this document.
   \centering\tikz{\qgateUc{0}{0}} &
   \centering\tikz{\qgateUc[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qgateUc[option]\{x\}\{y\}}
+\\ 
+  \centering\tikz{\qgateUa*{0}{0}{$\lambda$}} &
+  \centering\tikz{\qgateUa*[ibmqx]{0}{0}{$\lambda$}} & 
+  \texttt{\textbackslash qgateUa*[option]\{x\}\{y\}\{sublabel\}}
+\\ 
+  \centering\tikz{\qgateUb*{0}{0}{$\lambda,\phi$}} &
+  \centering\tikz{\qgateUb*[ibmqx]{0}{0}{$\lambda,\phi$}} & 
+  \texttt{\textbackslash qgateUb*[option]\{x\}\{y\}\{sublabel\}}
+\\ 
+  \centering\tikz{\qgateUc*{0}{0}{$\theta,\lambda,\phi$}} &
+  \centering\tikz{\qgateUc*[ibmqx]{0}{0}{$\theta,\lambda,\phi$}} & 
+  \texttt{\textbackslash qgateUc*[option]\{x\}\{y\}\{sublabel\}}
 \\ 
   \centering\tikz{\qgateCNX{b}{0}{0}} &
   \centering\tikz{\qgateCNX[ibmqx]{b}{0}{0}} & 
@@ -322,6 +334,10 @@ for the latest version of this document.
   \centering\tikz{\qmeasM{0}{0}} &
   \centering\tikz{\qmeasM[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qmeasM[option]\{x\}\{y\}}
+\\ 
+  \centering\tikz{\qmeasM*{0}{0}{X}} &
+  \centering\tikz{\qmeasM*[ibmqx]{0}{0}{X}} & 
+  \texttt{\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}}
 \\ 
   \centering\tikz{\qmeasR{0}{0}} &
   \centering\tikz{\qmeasR[ibmqx]{0}{0}} & 
@@ -1208,7 +1224,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \subsection{Measurement Symbols}
 
 %% == \qmeasM =================================================================
-\docCmd{qmeasM[option]\{x\}\{y\}}{%
+\docCmd{qmeasM[option]\{x\}\{y\}\\\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}}{%
   Measurement symbol.
 }
 
@@ -1220,6 +1236,9 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
   $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+\docPar{axis}{%
+  Axis of measurement: X, Y, or Z (starred version only).
 }
 
 \subsubsection*{Examples}
@@ -1233,6 +1252,18 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \begin{tikzpicture}
   \qScalePaper
   \qmeasM[ibmqx]{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qmeasM*{0}{0}{X}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qmeasM*[ibmqx]{0}{0}{X}
 \end{tikzpicture}
 \end{LTXexample}
 

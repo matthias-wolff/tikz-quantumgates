@@ -265,9 +265,9 @@
 }
 \newcommand\qgateUaS[4][]{% starred version
   \ifthenelse{\isin{ibmqx}{#1}}{%
-    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U1\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU[ibmqxA]{#2}{#3}{\qgateSublabel{U1}{#4}}
   }{%
-    \qgateU{#2}{#3}{\begin{tabular}{c}U1\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU{#2}{#3}{\qgateSublabel{U1}{#4}}
   }%
 }
 \newcommand\qgateOUa{{%
@@ -295,9 +295,9 @@
 }
 \newcommand\qgateUbS[4][]{% starred version
   \ifthenelse{\isin{ibmqx}{#1}}{%
-    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U2\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU[ibmqxA]{#2}{#3}{\qgateSublabel{U2}{#4}}
   }{%
-    \qgateU{#2}{#3}{\begin{tabular}{c}U2\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU{#2}{#3}{\qgateSublabel{U2}{#4}}
   }%
 }
 \newcommand\qgateOUb{{%
@@ -327,9 +327,9 @@
 }
 \newcommand\qgateUcS[4][]{% starred version 
   \ifthenelse{\isin{ibmqx}{#1}}{% unstarred version
-    \qgateU[ibmqxA]{#2}{#3}{\begin{tabular}{c}U3\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU[ibmqxA]{#2}{#3}{\qgateSublabel{U3}{#4}}
   }{%
-    \qgateU{#2}{#3}{\begin{tabular}{c}U3\\[-0.6em]\tiny #4\end{tabular}}
+    \qgateU{#2}{#3}{\qgateSublabel{U3}{#4}}
   }%
 }
 \newcommand\qgateOUc{{%
@@ -523,7 +523,13 @@
 }}
 
 % Measurement symbol
-\newcommand\qmeasM[3][]{{%
+\makeatletter
+\newcommand\qmeasM{\@ifstar\qmeasMS\qmeasMN}
+\makeatother
+\newcommand\qmeasMN[3][]{
+  \qmeasMS[#1]{#2}{#3}{Z}
+}
+\newcommand\qmeasMS[4][]{{%
   \pgfmathsetmacro\x{\qgateSx*(#2)}
   \pgfmathsetmacro\y{(#3)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
@@ -544,7 +550,7 @@
   \draw[rstyle] (\x-0.4    ,\y-0.4 ) rectangle (\x+0.4,\y+0.4);
   \draw[tstyle] (\x+0.27   ,\y-0.2 ) arc (0:180:0.27);
   \draw[pstyle] (\x        ,\y-0.15) -- (\x+0.2,\y+0.22); 
-  \node[pstyle] at (\x+0.26,\y+0.15) {\tiny\sf Z};
+  \node[pstyle] at (\x+0.28,\y+0.15) {\tiny\sf #4};
   \fill[pstyle] (\x        ,\y-0.15) circle (0.035);
   \draw[cstyle] (\x        ,\y-0.4 ) -- (\x,\y-0.5);
 }}
@@ -643,6 +649,9 @@
   \node[#1] at (\x,\y) {#4};
 }
 
+%% == PACKAGE-INTERNAL COMMANDS ===============================================
+
+% Draw scale paper for documentations
 \newcommand{\qScalePaper}{%
   \draw[help lines,xstep=(\qgateSx/8),ystep=0.25,opacity=0.2] (-1.5,-1.5) grid (1.5,1.5);
   \draw[help lines,line width=.6pt,xstep=(\qgateSx/2),ystep=1,opacity=0.2] (-1.49,-1.5) grid (1.49,1.5);
@@ -652,6 +661,12 @@
   \node[anchor=west ,color=gray] at (-2.3,-1  ) {\scriptsize $\texttt{y}\!-\!1$};
   \node[anchor=west ,color=gray] at (-2.3, 0  ) {\scriptsize $\texttt{y}$};
   \node[anchor=west ,color=gray] at (-2.3, 1  ) {\scriptsize $\texttt{y}\!+\!1$};
+}
+
+% Draw gate label with sub-label
+\newcommand\qgateSublabel[2]{%
+  {\renewcommand{\arraystretch}{0.4}%
+  \begin{tabular}{c}#1\\\tiny #2\end{tabular}}%
 }
 
 %% == EOF =====================================================================
