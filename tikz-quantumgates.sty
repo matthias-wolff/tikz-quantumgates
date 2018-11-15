@@ -527,9 +527,9 @@
 \newcommand\qmeasM{\@ifstar\qmeasMS\qmeasMN}
 \makeatother
 \newcommand\qmeasMN[3][]{
-  \qmeasMS[#1]{#2}{#3}{Z}
+  \qmeasMS[#1]{#2}{#3}{Z}{br}
 }
-\newcommand\qmeasMS[4][]{{%
+\newcommand\qmeasMS[5][]{{%
   \pgfmathsetmacro\x{\qgateSx*(#2)}
   \pgfmathsetmacro\y{(#3)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
@@ -546,13 +546,17 @@
     \tikzset{cstyle/.style={}}
   }%
   \draw[lstyle] (\x-\qgateSx/2,\y  ) -- (\x-0.4,\y);
-  \draw[lstyle] (\x+0.4    ,\y     ) -- (\x+\qgateSx/2,\y);
   \draw[rstyle] (\x-0.4    ,\y-0.4 ) rectangle (\x+0.4,\y+0.4);
   \draw[tstyle] (\x+0.27   ,\y-0.2 ) arc (0:180:0.27);
   \draw[pstyle] (\x        ,\y-0.15) -- (\x+0.2,\y+0.22); 
   \node[pstyle] at (\x+0.28,\y+0.15) {\tiny\sf #4};
   \fill[pstyle] (\x        ,\y-0.15) circle (0.035);
-  \draw[cstyle] (\x        ,\y-0.4 ) -- (\x,\y-0.5);
+  \ifthenelse{\isin{r}{#5}}{%
+    \draw[lstyle] (\x+0.4,\y) -- (\x+\qgateSx/2,\y);%
+  }{}
+  \ifthenelse{\isin{b}{#5}}{%
+    \draw[cstyle] (\x,\y-0.4 ) -- (\x,\y-0.5);%
+  }{}
 }}
 
 % Measurement run-through qubit symbol

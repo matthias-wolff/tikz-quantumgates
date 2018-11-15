@@ -335,9 +335,9 @@ for the latest version of this document.
   \centering\tikz{\qmeasM[ibmqx]{0}{0}} & 
   \texttt{\textbackslash qmeasM[option]\{x\}\{y\}}
 \\ 
-  \centering\tikz{\qmeasM*{0}{0}{X}} &
-  \centering\tikz{\qmeasM*[ibmqx]{0}{0}{X}} & 
-  \texttt{\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}}
+  \centering\tikz{\qmeasM*{0}{0}{X}{b}} &
+  \centering\tikz{\qmeasM*[ibmqx]{0}{0}{X}{b}} & 
+  \texttt{\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}\{wires\}}
 \\ 
   \centering\tikz{\qmeasR{0}{0}} &
   \centering\tikz{\qmeasR[ibmqx]{0}{0}} & 
@@ -1224,7 +1224,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \subsection{Measurement Symbols}
 
 %% == \qmeasM =================================================================
-\docCmd{qmeasM[option]\{x\}\{y\}\\\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}}{%
+\docCmd{qmeasM[option]\{x\}\{y\}\\\textbackslash qmeasM*[option]\{x\}\{y\}\{axis\}\{wires\}}{%
   Measurement symbol.
 }
 
@@ -1239,6 +1239,10 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 }
 \docPar{axis}{%
   Axis of measurement: X, Y, or Z (starred version only).
+}
+\docPar{wires}{%
+  Wires, \texttt{b} for bottom, \texttt{r} for right, and \texttt{br} for both 
+  (starred version only).
 }
 
 \subsubsection*{Examples}
@@ -1257,13 +1261,13 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
   \qScalePaper
-  \qmeasM*{0}{0}{X}
+  \qmeasM*{0}{0}{X}{b}
 \end{tikzpicture}
 \end{LTXexample}
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
   \qScalePaper
-  \qmeasM*[ibmqx]{0}{0}{X}
+  \qmeasM*[ibmqx]{0}{0}{X}{b}
 \end{tikzpicture}
 \end{LTXexample}
 
