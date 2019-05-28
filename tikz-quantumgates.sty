@@ -406,27 +406,29 @@
     \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
     \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
     \tikzset{tstyle/.style={very thick,white}}
+    \def\R{0.4}
   }{%
     \tikzset{lstyle/.style={}}
     \tikzset{cstyle/.style={}}
     \tikzset{rstyle/.style={fill=white}}
     \tikzset{tstyle/.style={}}
+    \def\R{0.25}
   }%
-  \draw[lstyle] (\x-\qgateSx/2,\y) -- (\x-0.4       ,\y);
-  \draw[lstyle] (\x+0.4       ,\y) -- (\x+\qgateSx/2,\y);
-  \draw[rstyle] (\x           ,\y) circle (0.4);
+  \draw[lstyle] (\x-\qgateSx/2,\y) -- (\x-\R        ,\y);
+  \draw[lstyle] (\x+\R        ,\y) -- (\x+\qgateSx/2,\y);
+  \draw[rstyle] (\x           ,\y) circle (\R);
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \draw[tstyle] (\x-0.2,\y) -- (\x+0.2,\y);
     \draw[tstyle] (\x,\y-0.2) -- (\x,\y+0.2);
   }{%
-    \draw[lstyle] (\x-0.4,\y) -- (\x+0.4,\y);
-    \draw[lstyle] (\x,\y-0.4) -- (\x,\y+0.4);
+    \draw[lstyle] (\x-\R,\y) -- (\x+\R,\y);
+    \draw[lstyle] (\x,\y-\R) -- (\x,\y+\R);
   }
   \ifthenelse{\isin{t}{#2}}{%
-    \draw[cstyle] (\x,\y+0.4) -- (\x,\y+0.5);
+    \draw[cstyle] (\x,\y+\R) -- (\x,\y+0.5);
   }{}
   \ifthenelse{\isin{b}{#2}}{%
-    \draw[cstyle] (\x,\y-0.4) -- (\x,\y-0.5);
+    \draw[cstyle] (\x,\y-\R) -- (\x,\y-0.5);
   }{}
 }}
 
@@ -436,8 +438,13 @@
   \pgfmathsetmacro\y{(#4)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \tikzset{lstyle/.style={ultra thick,line cap=butt}}
-    \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
-    \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
+    \ifthenelse{\equal{ibmqx}{#1}}{%
+      \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
+      \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
+    }{%
+      \tikzset{cstyle/.style={#1,ultra thick,line cap=butt}}
+      \tikzset{rstyle/.style={draw=none,fill=#1}}
+    }      
     \tikzset{tstyle/.style={white}}
     \def\r{0.12}
   }{%
@@ -463,7 +470,11 @@
   \pgfmathsetmacro\y{(#3)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \tikzset{lstyle/.style={ultra thick,line cap=butt}}
-    \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
+    \ifthenelse{\equal{ibmqx}{#1}}{%
+      \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
+    }{%
+      \tikzset{cstyle/.style={#1,ultra thick,line cap=butt}}
+    }          
   }{%
     \tikzset{lstyle/.style={}}
     \tikzset{cstyle/.style={}}
@@ -645,6 +656,27 @@
 }}
 
 %% == AUXILIARY COMMANDS ======================================================
+
+% Control wires for gates
+\newcommand\qgateControl[4][]{{%
+  \pgfmathsetmacro\x{\qgateSx*(#3)}
+  \pgfmathsetmacro\y{(#4)}
+    \ifthenelse{\isin{ibmqx}{#1}}{%
+    \ifthenelse{\equal{ibmqx}{#1}}{%
+      \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
+    }{%
+      \tikzset{cstyle/.style={#1,ultra thick,line cap=butt}}
+    }
+  }{%
+    \tikzset{cstyle/.style={}}
+  }%
+  \ifthenelse{\isin{t}{#2}}{%
+    \draw[cstyle] (\x,\y+0.4) -- (\x,\y+0.5);
+  }{}
+  \ifthenelse{\isin{b}{#2}}{%
+    \draw[cstyle] (\x,\y-0.4) -- (\x,\y-0.5);
+  }{}
+}}
 
 % TikZ node in circuit coordinate system
 \newcommand\qnode[4][]{%

@@ -106,6 +106,7 @@
       isin,%
       qwire,%
       qzero,%
+      qgateControl,%
       qgateU,%
       qgateUu,%
       qgateUuu,%
@@ -369,6 +370,13 @@ for the latest version of this document.
   \centering$\begin{pmatrix}\tikz{\qgateUuu[ibmqx]{0}{0}{U}}\end{pmatrix}$ & 
   \texttt{\textbackslash qgateUuu[option]\{x\}\{y\}\{label\}}
   {\footnotesize (not an ``official'' IBM QX symbol)}
+\end{longtable}
+
+Any gate can be equipped with control wires, e.g.
+\begin{longtable}{m{40pt}m{60pt}p{295pt}}
+  \centering\tikz{\qgateUc{0}{0};\qgateControl{t}{0}{0};} &
+  \centering\tikz{\qgateUc[ibmqx]{0}{0};\qgateControl[ibmqxA]{t}{0}{0};} & 
+  \texttt{\textbackslash qgateUc[option]\{x\}\{y\}\textbackslash qgateControl[option]\{cwires\}\{x\}\{y\}}
 \end{longtable}
 
 \subsection{Installation}
@@ -1072,13 +1080,26 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 %% == \qgateCNC ===============================================================
 \docCmd{qgateCNC[option]\{cwires\}\{x\}\{y\}}{%
-  Control qubit symbol of controlled-NOT gate.
+  Control qubit symbol of a controlled gate.
 }
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
-  circuit styling.
+  Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
+  for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
+  defines the color control wire:
+
+  \vspace*{6pt}
+  \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
+  \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
+  \tikz{\fill[ibmqxC] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{C}};}
+  \tikz{\fill[ibmqxD] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{D}};}
+  \tikz{\fill[ibmqxE] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{E}};}
+  \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
+  \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
+  \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxD} will be used.
 }
 \docPar{cwires}{%
   Control wires, \texttt{t} for top,  \texttt{b} for bottom, and  \texttt{tb}
@@ -1105,13 +1126,26 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 
 %% == \qgateCNR ===============================================================
 \docCmd{qgateCNR[option]\{x\}\{y\}}{%
-  Run-through qubit symbol of controlled-NOT gate.
+  Run-through qubit symbol of a controlled gate.
 }
 
 \subsubsection*{Parameters}
 \docPar{option}{%
-  Omit for standard circuit styling or \texttt{ibmqx} for IBM Q Experience
-  circuit styling.
+  Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
+  for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
+  defines the color control wire:
+
+  \vspace*{6pt}
+  \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
+  \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
+  \tikz{\fill[ibmqxC] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{C}};}
+  \tikz{\fill[ibmqxD] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{D}};}
+  \tikz{\fill[ibmqxE] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{E}};}
+  \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
+  \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
+  \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxD} will be used.
 }
 \docPar{x, y}{%
   Position of symbol in schematic. The actual \Ntikz coordinates are
@@ -1128,7 +1162,7 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \begin{LTXexample}[style=lstsDocExamples]
 \begin{tikzpicture}
   \qScalePaper
-  \qgateCNR[ibmqx]{0}{0}
+  \qgateCNR[ibmqxC]{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 
@@ -1407,6 +1441,56 @@ $\displaystyle CCNOT\doteq\qgateOCCNOT $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Auxiliary Commands}
+
+%% == \qgateControl ================================================================
+\docCmd{qgateControl[option]\{cwires\}\{x\}\{y\}}{%
+  Adds control wire(s) to any gate (except CNOT and measurement).
+}
+
+\subsubsection*{Parameters}
+\docPar{option}{%
+  Omit for standard circuit styling or \texttt{ibmqxA},\ldots,\texttt{ibmqxH}
+  for IBM Q Experience circuit styling. The last letter of \texttt{ibmqx*}
+  defines the color control wire:
+
+  \vspace*{6pt}
+  \tikz{\fill[ibmqxA] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{A}};}
+  \tikz{\fill[ibmqxB] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{B}};}
+  \tikz{\fill[ibmqxC] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{C}};}
+  \tikz{\fill[ibmqxD] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{D}};}
+  \tikz{\fill[ibmqxE] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{E}};}
+  \tikz{\fill[ibmqxF] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{F}};}
+  \tikz{\fill[ibmqxG] (-0.2,-0.2) rectangle (0.2,0.2); \node[white] at (0,0) {\texttt{G}};}
+  \tikz{\fill[ibmqxH] (-0.2,-0.2) rectangle (0.2,0.2); \node[black] at (0,0) {\texttt{H}};}
+
+  If \texttt{ibmqx} is passed, \texttt{ibmqxD} will be used.
+}
+\docPar{cwires}{%
+  Control wires, \texttt{t} for top,  \texttt{b} for bottom, and  \texttt{tb}
+  for both sides.
+}
+\docPar{x, y}{%
+  Position of symbol in schematic. The actual \Ntikz coordinates are
+  $(\texttt{\textbackslash qgateSx*x},\texttt{y})$.
+}
+
+
+\subsubsection*{Examples}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateCNC{b}{0}{1}
+  \qgateH{0}{0}\qgateControl{t}{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateTi[ibmqx]{0}{1}\qgateControl[ibmqxE]{b}{0}{1}
+  \qgateCNC[ibmqxE]{t}{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+
 
 %% == \qnode ================================================================
 \docCmd{qnode[style]\{x\}\{y\}\{label\}}{%
