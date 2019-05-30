@@ -317,6 +317,10 @@ for the latest version of this document.
   \centering\tikz{\qgateCNC[ibmqx]{t}{0}{0}} & 
   \texttt{\textbackslash qgateCNC[option]\{cwires\}\{x\}\{y\}}
 \\ 
+  \centering\tikz{\qgateCNC*{t}{0}{0}} &
+  \centering\tikz{\qgateCNC*[ibmqx]{t}{0}{0}} & 
+  \texttt{\textbackslash qgateCNC*[option]\{cwires\}\{x\}\{y\}}
+\\ 
   \centering\tikz{\qgateSWt{0}{0}} &
   \centering$\begin{pmatrix}\tikz{\qgateSWt[ibmqx]{0}{0}}\end{pmatrix}$ & 
   \texttt{\textbackslash qgateSWt[option]\{x\}\{y\}}
@@ -1079,8 +1083,9 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \end{LTXexample}
 
 %% == \qgateCNC ===============================================================
-\docCmd{qgateCNC[option]\{cwires\}\{x\}\{y\}}{%
-  Control qubit symbol of a controlled gate.
+\docCmd{qgateCNC[option]\{cwires\}\{x\}\{y\}\\\textbackslash qgateCNC*[option]\{cwires\}\{x\}\{y\}}{%
+  Control qubit symbol of a controlled gate. Starred version draws inverse
+  control.
 }
 
 \subsubsection*{Parameters}
@@ -1121,6 +1126,12 @@ $\displaystyle U3_{\lambda,\phi,\theta}\doteq\qgateOUc $
 \begin{tikzpicture}
   \qScalePaper
   \qgateCNC[ibmqx]{b}{0}{0}
+\end{tikzpicture}
+\end{LTXexample}
+\begin{LTXexample}[style=lstsDocExamples]
+\begin{tikzpicture}
+  \qScalePaper
+  \qgateCNC*[ibmqxA]{t}{0}{0}
 \end{tikzpicture}
 \end{LTXexample}
 

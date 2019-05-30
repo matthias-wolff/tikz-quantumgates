@@ -77,7 +77,7 @@
   \draw[lstyle] (\x-\qgateSx/2,\y) -- (\x-0.4       ,\y);
   \draw[lstyle] (\x+0.4       ,\y) -- (\x+\qgateSx/2,\y);
   \draw[rstyle] (\x-0.4   ,\y-0.4) rectangle (\x+0.4,\y+0.4);
-  \node[tstyle] at (\x,\y) {\sf\large #4};
+  \node[tstyle,anchor=center] at (\x,\y) {\sf\large #4};
 }}
 
 % Identity gate
@@ -433,24 +433,41 @@
 }}
 
 % CNOT gate control qubit symbol
-\newcommand\qgateCNC[4][]{{%                                                     
+\makeatletter
+\newcommand\qgateCNC{\@ifstar\qgateCNCS\qgateCNCN}
+\makeatother
+\newcommand\qgateCNCS[4][]{\qgateCNCint{#1}{#2}{#3}{#4}{inv}}%starred version
+\newcommand\qgateCNCN[4][]{\qgateCNCint{#1}{#2}{#3}{#4}{}}   %unstarred version
+\newcommand\qgateCNCint[5]{{%                                                     
   \pgfmathsetmacro\x{\qgateSx*(#3)}
   \pgfmathsetmacro\y{(#4)}
   \ifthenelse{\isin{ibmqx}{#1}}{%
     \tikzset{lstyle/.style={ultra thick,line cap=butt}}
     \ifthenelse{\equal{ibmqx}{#1}}{%
       \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
-      \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
+      \ifthenelse{\equal{inv}{#5}}{%
+        \tikzset{rstyle/.style={draw=ibmqxD,thick,fill=white}}
+      }{%
+        \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
+      }
     }{%
       \tikzset{cstyle/.style={#1,ultra thick,line cap=butt}}
-      \tikzset{rstyle/.style={draw=none,fill=#1}}
+      \ifthenelse{\equal{inv}{#5}}{%
+        \tikzset{rstyle/.style={draw=#1,thick,fill=white}}
+      }{%
+        \tikzset{rstyle/.style={draw=none,fill=#1}}
+      }
     }      
     \tikzset{tstyle/.style={white}}
     \def\r{0.12}
   }{%
     \tikzset{lstyle/.style={}}
     \tikzset{cstyle/.style={}}
-    \tikzset{rstyle/.style={draw=none,fill=black}}
+      \ifthenelse{\equal{inv}{#5}}{%
+        \tikzset{rstyle/.style={draw=black,fill=white}}
+      }{%
+        \tikzset{rstyle/.style={draw=none,fill=black}}
+      }
     \tikzset{tstyle/.style={}}
     \def\r{0.1}
   }%
@@ -463,6 +480,38 @@
     \draw[cstyle] (\x,\y-0.1) -- (\x,\y-0.5);
   }{}
 }}
+
+
+% \newcommand\qgateCNC[4][]{{%                                                     
+%   \pgfmathsetmacro\x{\qgateSx*(#3)}
+%   \pgfmathsetmacro\y{(#4)}
+%   \ifthenelse{\isin{ibmqx}{#1}}{%
+%     \tikzset{lstyle/.style={ultra thick,line cap=butt}}
+%     \ifthenelse{\equal{ibmqx}{#1}}{%
+%       \tikzset{cstyle/.style={ibmqxD,ultra thick,line cap=butt}}
+%       \tikzset{rstyle/.style={draw=none,fill=ibmqxD}}
+%     }{%
+%       \tikzset{cstyle/.style={#1,ultra thick,line cap=butt}}
+%       \tikzset{rstyle/.style={draw=none,fill=#1}}
+%     }      
+%     \tikzset{tstyle/.style={white}}
+%     \def\r{0.12}
+%   }{%
+%     \tikzset{lstyle/.style={}}
+%     \tikzset{cstyle/.style={}}
+%     \tikzset{rstyle/.style={draw=none,fill=black}}
+%     \tikzset{tstyle/.style={}}
+%     \def\r{0.1}
+%   }%
+%   \draw[lstyle] (\x-\qgateSx/2,\y) -- (\x+\qgateSx/2,\y);
+%   \draw[rstyle] (\x           ,\y) circle (\r);
+%   \ifthenelse{\isin{t}{#2}}{%
+%     \draw[cstyle] (\x,\y+0.1) -- (\x,\y+0.5);
+%   }{}
+%   \ifthenelse{\isin{b}{#2}}{%
+%     \draw[cstyle] (\x,\y-0.1) -- (\x,\y-0.5);
+%   }{}
+% }}
 
 % CNOT gate run-through qubit symbol
 \newcommand\qgateCNR[3][]{{%                                                     
@@ -682,7 +731,7 @@
 \newcommand\qnode[4][]{%
   \pgfmathsetmacro\x{\qgateSx*(#2)}
   \pgfmathsetmacro\y{(#3)}
-  \node[#1] at (\x,\y) {#4};
+  \node[anchor=center,#1] at (\x,\y) {#4};
 }
 
 %% == PACKAGE-INTERNAL COMMANDS ===============================================
